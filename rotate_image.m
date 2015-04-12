@@ -1,4 +1,4 @@
-function [ image_rotated, pk, cnt, angle ] = rotate_image( image,min_brightness, min_size, averaging_diameter, number_of_bins)
+function [ image_rotated ] = rotate_image( image,min_brightness, min_size, averaging_diameter, number_of_bins)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -6,14 +6,9 @@ function [ image_rotated, pk, cnt, angle ] = rotate_image( image,min_brightness,
 pk = pkfnd(image,min_brightness,min_size);
 %get centroids of posts based on detected peaks
 cnt = cntrd(image,pk,averaging_diameter);
-whos cnt
-figure;
-hist(mod(cnt(:,1),1),20);
+%display centroid calculation output in command window
+hist(mod(cnt(:,1),1),number_of_bins);
 
-%plot centroid map
-figure;
-plot(pk(:,1),pk(:,2),'.');
-figure;
 
 %pick corner centroid and closest neighbor
 origin=[1 1];

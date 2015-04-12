@@ -1,7 +1,7 @@
 %Jeffrey Mays
 %150329
 
-%COMMENT FOR GITHUB
+
 %clear MATLAB command window and close figures
 clc;
 clear all;
@@ -32,24 +32,32 @@ min_size=10;
 averaging_diameter=10;
 %number of histogram bins
 number_of_bins=20;
+
 image_rotated=rotate_image( image,min_brightness, min_size, ...
                          averaging_diameter, number_of_bins);
 
 
+%find centroids in the new image
+%apply background subtraction function
+b = bpass(image_rotated,1,6);
+
+%get location of all peaks (pixels>[middle value])
+pk = pkfnd(b,60,10);
+
+%get centroids of posts based on detected peaks
+cnt = cntrd(b,pk,10);
+
+%display centroid calculation output in command window
+whos cnt
+hist(mod(cnt(:,1),1),20);
+
+%plot centroid map
+plot(pk(:,1),pk(:,2),'.');
 
 
-
-
-
-
-
-
-
-
-                     
-                 
-
-
+%to correct translational shifts, use imregister to compare shifted picture to a
+%fixed reference image
+%repeat above process for
 
 
 

@@ -11,7 +11,7 @@ function [ image ] = acquire_image( image_to_read, image_noise_length, image_obj
 %--------------------------------------------------------------------------
 
 %read .jpg image
-image = (imread(image_to_read));
+image = double(imread(image_to_read));
 %get 2d image
 image = image(:,:,1);
 %remap image to gray colormap and display
