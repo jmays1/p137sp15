@@ -1,7 +1,7 @@
 %Jeffrey Mays
 %150329
 
-
+%COMMENT FOR GITHUB
 %clear MATLAB command window and close figures
 clc;
 clear all;
